@@ -11,7 +11,7 @@
 | first_name          | string   | null: false        |
 | last_name_kana      | string   | null: false        |
 | first_name_kana     | string   | null: false        |
-| birth_date          | datetime | null: false        |
+| birth_date          | date     | null: false        |
 
 ### Association
 - has_many :items
@@ -20,18 +20,17 @@
 
 ## itemsテーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| name         | string     | null: false                    |
-| explanation  | text       | null: false                    |
-| category     | string     | null: false                    |
-| condition    | string     | null: false                    |
-| postage      | string     | null: false                    |
-| sending_area | string     | null: false                    |
-| sending_date | datetime   | null: false                    |
-| price        | integer    | null: false                    |
-| user         | references | null: false, foreign_key: true |
-| buy          | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| name            | string     | null: false                    |
+| explanation     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| postage_id      | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| sending_date_id | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -44,41 +43,27 @@
 | ------------ | ---------- | ------------------------------ |
 | user         | references | null: false, foreign_key: true |
 | item         | references | null: false, foreign_key: true |
-| delivery     | references | null: false, foreign_key: true |
-| card         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :deliver
-- belongs_to :cars
+- has_one :deliver
 
 
-## deliveries
+## deliveriesテーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postal_code   | integer    | null: false                    |
-| prefecture    | string     | null: false                    |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | municipality  | string     | null: false                    |
 | house_num     | string     | null: false                    |
 | building_name | string     |                                |
-| telephone_num | integer    | null: false                    |
-| card          | references | null: false, foreign_key: true |
+| telephone_num | string     | null: false                    |
 
 ### Association
 - belongs_to :buy
 
 
-## cardsテーブル
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| card_num        | integer    | null: false                    |
-| expiration_date | datetime   | null: false                    |
-| security_code   | integer    | null: false                    |
-| buy             | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to :buy
 
 
 
