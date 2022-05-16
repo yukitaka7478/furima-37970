@@ -47,7 +47,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :deliver
+- has_one :delivery
 
 
 ## deliveriesテーブル
@@ -59,6 +59,7 @@
 | house_num     | string     | null: false                    |
 | building_name | string     |                                |
 | telephone_num | string     | null: false                    |
+| buy           | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :buy
