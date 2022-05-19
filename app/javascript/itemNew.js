@@ -3,9 +3,9 @@ function salesTax (){
   const addTaxPrice =document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
   price.addEventListener('input', () => {
-    addTaxPrice.value = parseInt(price.value * 0.1);
+    addTaxPrice.value = Math.floor(price.value * 0.1);
     addTaxPrice.innerHTML = `${addTaxPrice.value}`;
-    profit.value = parseInt(price.value - addTaxPrice.value);
+    profit.value = Math.floor(price.value - addTaxPrice.value);
     profit.innerHTML = `${profit.value}`;
   });
   
