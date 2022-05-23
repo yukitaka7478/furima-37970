@@ -28,8 +28,8 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include('Postage code is invalid. Include hyphen(-)')
       end
-      it 'prefecture_idが空では保存できない' do
-        @buy_delivery.prefecture_id = nil
+      it 'prefecture_idが「---」では保存できない' do
+        @buy_delivery.prefecture_id = '1'
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -48,8 +48,18 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include("Telephone num can't be blank")
       end
-      it 'telephone_numが10桁以上11桁以内の半角数値のみでなければ保存できない' do
-        @buy_delivery.telephone_num = '010-1111-1111'
+      it 'telephone_numが9桁以下では保存できない' do
+        @buy_delivery.telephone_num = '090090090'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Telephone num is invalid. Not include hyphen(-)")
+      end
+      it 'telephone_numが12桁以上では保存できない' do
+        @buy_delivery.telephone_num = '090090090090'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Telephone num is invalid. Not include hyphen(-)")
+      end
+      it 'telephone_numが半角数字以外を含んでいると保存できない' do
+        @buy_delivery.telephone_num = 'a010-1111-1111'
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include('Telephone num is invalid. Not include hyphen(-)')
       end
