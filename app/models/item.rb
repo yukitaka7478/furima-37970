@@ -1,8 +1,10 @@
 class Item < ApplicationRecord
-  validates :image, presence: true
-  validates :name, presence: true
-  validates :explanation, presence: true
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options presence: true do
+  validates :image
+  validates :name
+  validates :explanation
+  end
+  with_options numericality: { other_than: 1, message: "は---以外を選択してください" } do
     validates :category_id
     validates :condition_id
     validates :postage_id
