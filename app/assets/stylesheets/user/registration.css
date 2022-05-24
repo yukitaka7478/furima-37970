@@ -158,3 +158,19 @@
   text-align: right;
   cursor: pointer;
 }
+
+.sns_links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.facebook {
+  margin-right: 5px;
+  color: red;
+}
+
+.google {
+  margin-left: 5px;
+  color: red;
+}
