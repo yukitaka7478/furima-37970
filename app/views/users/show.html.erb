@@ -6,16 +6,21 @@
   </header>
   
   <div class="items-sell-main">
-    <div class="contents row">
-      <p><%= @nickname %>さんの投稿一覧</p>
+    <h1 class="items-sell-title"><%= @nickname %>さんの投稿一覧</h1>
+    <div class="contents_row">
       <% @items.each do |item| %>
-        <% if item.buy.present? %>
-        <% else %>
-          <div class="content_post">
-            <div class="item_name"><%= link_to item.name, item_path(item.id) %></div>
-            <%= image_tag item.image %>
+        <div class="content_post">
+          <%= link_to item.name, item_path(item.id), class: "item_name" %>
+          <div class="item-img-content ">
+            <%= image_tag item.image, class: "item-img" %>
+              <% unless item.buy.present? %>
+              <% else %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
   </div>
